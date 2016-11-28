@@ -82,7 +82,7 @@ function confirmCoords(){
         console.log(vz);
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
-        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz;
+        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz;
 
     }else{alert('please click on both images');}
 
