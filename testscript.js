@@ -309,20 +309,20 @@ function initiate(){
     if (validation){
         //check gender and age to send to phantom matcher
         if(pgend=='male' && page<18){
-            alert('ped male');
+            //alert('ped male');
             var phantnames=phantommatcher(pheight,pweight,PMfiles,'pm');
         }else if(pgend=='female' && page<18){
-            alert('ped female');
+            //alert('ped female');
             var phantnames=phantommatcher(pheight,pweight,PFfiles,'pf');
         }else if(pgend=='male' && page>=18){
-            alert('adult male');
+           // alert('adult male');
             var phantnames=phantommatcher(pheight,pweight,AMfiles,'am');
         }else if(pgend=='female' && page>=18){
-            alert('adult female');
+            //alert('adult female');
             var phantnames=phantommatcher(pheight,pweight,AFfiles,'af');
         }
         //after match need to add event listeners to images and change ID to LAt and AP
-        alert(phantnames);
+        //alert(phantnames);
         phantomnames=phantnames;//return global variable
         var im1name=phantnames[0];
         var im2name=phantnames[1];
