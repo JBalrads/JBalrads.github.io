@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Phantom Viewer Field Size Method</title>
+    <style>
+        table{
+            border: 1px solid black;
+            table-layout: fixed;
+
+        }
+        th,td{
+            border: 1px solid black;
+            max-width: 100px;
+            overflow: scroll;
+        }
+    </style>
 </head>
 <h1>UF Phantom Viewer Field Size Method</h1>
 <h2>Instructions:</h2>
@@ -41,14 +53,37 @@
 <br>
 <button id="confirmbutt" style="visibility: hidden" onclick="confirmCoords()">Confirm</button>
 <br>
-<textarea readonly style="visibility: hidden" id="inputTextToSave" cols="80" rows="25">PatId,ImNum,Pdate,Pdesc,Gender,PHeight,PWeight,PAge,MatchedPhantom,VoxelX,VoxelY,VoxelZ</textarea>
+<table id="patdtable" style="visibility: hidden">
+    <tr>
+        <th>Patient ID</th>
+        <th>Image Number</th>
+        <th>Procedure Date</th>
+        <th>Procedure Description</th>
+        <th>Gender</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Age</th>
+        <th>Phantom</th>
+        <th>Voxel X_1</th>
+        <th>Voxel Y_1</th>
+        <th>Voxel Z_1</th>
+        <th>Voxel X_2</th>
+        <th>Voxel Y_2</th>
+        <th>Voxel Z_2</th>
+        <th>AP H/W</th>
+        <th>LAT H/W</th>
+
+    </tr>
+</table>
 <br>
 <input id="inputFileNameToSaveAs" style="visibility: hidden" ></input>
 <button id="savebutt" onclick="saveTextAsFile()" style="visibility: hidden">Save Results</button>
-
 <br>
-<img id="Image1" class="Image1" hidden ></img>
-<img id="Image2" class="Image2"hidden></img>
+<img id="Image1" class="Image1" hidden style="display: none" ></img>
+<img id="Image2" class="Image2"hidden style="display: none"></img>
+<br>
+<br>
+<textarea readonly style="visibility: hidden; display: none" id="inputTextToSave" cols="80" rows="25">PatId,ImNum,Pdate,Pdesc,Gender,PHeight,PWeight,PAge,MatchedPhantom,VoxelX,VoxelY,VoxelZ,VoxelX2,VoxelY2,VoxelZ2,AP H/W,Lat H/W</textarea>
 <br>
 <br>
 <!-----text file contents-->

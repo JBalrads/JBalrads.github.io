@@ -83,7 +83,8 @@ function confirmCoords(){
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
         tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz;
-
+        var pattable=document.getElementById('patdtable');
+        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vz+'</td></tr>';
     }else{alert('please click on both images');}
 
 }
@@ -342,9 +343,10 @@ function initiate(){
         document.getElementById('Image2Can').setAttribute('class',im2name);
         document.getElementById('Image1Can').style.visibility='visible';
         document.getElementById('Image2Can').style.visibility='visible';
-        document.getElementById('inputTextToSave').style.visibility='visible';
+        //document.getElementById('inputTextToSave').style.visibility='visible';
         document.getElementById('confirmbutt').style.visibility='visible';
         document.getElementById('inputFileNameToSaveAs').style.visibility='visible';
+        document.getElementById('patdtable').style.visibility='visible';
         document.getElementById('savebutt').style.visibility='visible';
     }
 }

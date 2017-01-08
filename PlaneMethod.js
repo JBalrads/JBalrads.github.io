@@ -17,6 +17,8 @@ var image2x=0;
 var image2y=0;
 var image2x2=0;
 var image2y2=0;
+var im1hwrat=0;
+var im2hwrat=0;
 var phantomnames;
 //----------get coords from functions and fill out table-----------------
 function confirmCoords(){
@@ -51,34 +53,67 @@ function confirmCoords(){
         var vx=0;
         var vy=0;
         var vz=0;
+        var vx2=0;
+        var vy2=0;
+        var vz2=0;
+        var lathwrat;
+        var aphwrat;
         if (im1orient=='LAT'){
             vy=(pdims[1]/im1dims[0])*image1x;
+            vy2=(pdims[1]/im1dims[0])*image1x2;
+            lathwrat=im1hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             }else{
                 vz=(vz+(pdims[2]-(pdims[2]/im1dims[1])*image1y))/2;
             }
+            if (vz2==0){
+                vz2=pdims[2]-(pdims[2]/im1dims[1])*image1y2;
+            }else{
+                vz2=(vz2+(pdims[2]-(pdims[2]/im1dims[1])*image1y2))/2;
+            }
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im1dims[0])*image1x;
+            vx2=(pdims[0]/im1dims[0])*image1x2;
+            aphwrat=im1hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             }else{
                 vz=(vz+(pdims[2]-(pdims[2]/im1dims[1])*image1y))/2;
+            }
+            if (vz2==0){
+                vz2=pdims[2]-(pdims[2]/im1dims[1])*image1y2;
+            }else{
+                vz2=(vz2+(pdims[2]-(pdims[2]/im1dims[1])*image1y2))/2;
             }
         }
         if (im2orient=='LAT'){
             vy=(pdims[1]/im2dims[0])*image2x;
+            vy2=(pdims[1]/im2dims[0])*image2x2;
+            lathwrat=im2hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
             }else{
                 vz=(vz+(pdims[2]-(pdims[2]/im2dims[1])*image2y))/2;
             }
+            if (vz2==0){
+                vz2=pdims[2]-(pdims[2]/im2dims[1])*image2y2;
+            }else{
+                vz2=(vz2+(pdims[2]-(pdims[2]/im2dims[1])*image2y2))/2;
+            }
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im2dims[0])*image2x;
+            vx2=(pdims[0]/im2dims[0])*image2x2;
+            aphwrat=im2hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
             }else{
                 vz=(vz+(pdims[2]-(pdims[2]/im2dims[1])*image2y))/2;
+            }
+            if (vz2==0){
+                vz2=pdims[2]-(pdims[2]/im2dims[1])*image2y2;
+            }else{
+                vz2=(vz2+(pdims[2]-(pdims[2]/im2dims[1])*image2y2))/2;
             }
         }
 
@@ -86,12 +121,15 @@ function confirmCoords(){
         console.log(vx);
         console.log(vy);
         console.log(vz);
+        console.log(vx2);
+        console.log(vy2);
+        console.log(vz2);
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
-        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz;
-
+        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz+','+vx2+','+vy2+','+vz2+','+aphwrat+','+lathwrat;
+        var pattable=document.getElementById('patdtable');
+        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vz+'</td><td>'+vx2+'</td><td>'+vy2+'</td><td>'+vz2+'</td><td>'+aphwrat+'</td><td>'+lathwrat+'</td></tr>';
     }else{alert('please click on both images');}
-
 }
 //----------------------save text area---------------------------
 function destroyClickedElement(event)
@@ -152,6 +190,8 @@ can1.addEventListener('click',function(e){
         console.log('image1.2');
         console.log(image1x2);
         console.log(image1y2);
+        console.log(Math.abs((image1y2-image1y))/Math.abs((image1x2-image1x)));
+        im1hwrat=Math.abs((image1y2-image1y))/Math.abs((image1x2-image1x));
     }
     //image1x=event.pageX-can1.offsetLeft;
     //image1y=event.pageY-can1.offsetTop;
@@ -191,6 +231,8 @@ can2.addEventListener('click',function(e){
         console.log('image2.2');
         console.log(image2x2);
         console.log(image2y2);
+        console.log(Math.abs((image2y2-image2y))/Math.abs((image2x2-image2x)));
+        im2hwrat=Math.abs((image2y2-image2y))/Math.abs((image2x2-image2x));
     }
 });
 //-------------check form function-------------------------------
@@ -387,9 +429,10 @@ function initiate(){
         document.getElementById('Image2Can').setAttribute('class',im2name);
         document.getElementById('Image1Can').style.visibility='visible';
         document.getElementById('Image2Can').style.visibility='visible';
-        document.getElementById('inputTextToSave').style.visibility='visible';
+        //document.getElementById('inputTextToSave').style.visibility='visible';
         document.getElementById('confirmbutt').style.visibility='visible';
         document.getElementById('inputFileNameToSaveAs').style.visibility='visible';
+        document.getElementById('patdtable').style.visibility='visible';
         document.getElementById('savebutt').style.visibility='visible';
     }
 }
