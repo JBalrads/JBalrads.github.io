@@ -23,6 +23,7 @@ function confirmCoords(){
         var pgend = document.forms["reqInfo"]["gender"].value;
         var pheight = document.forms["reqInfo"]["ph"].value;
         var pweight = document.forms["reqInfo"]["pw"].value;
+        var etype = document.forms["reqInfo"]["etype"].value;
         var page = document.forms["reqInfo"]["pa"].value;
         var im1=document.getElementById('Image1Can');
         var im2=document.getElementById('Image2Can');
@@ -90,9 +91,9 @@ function confirmCoords(){
         console.log(vz);
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
-        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vzap+','+vzlat;
+        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+etype+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vzap+','+vzlat;
         var pattable=document.getElementById('patdtable');
-        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vzap+'</td><td>'+vzlat+'</td></tr>';
+        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+etype+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vzap+'</td><td>'+vzlat+'</td></tr>';
     }else{alert('please click on both images');}
 
 }

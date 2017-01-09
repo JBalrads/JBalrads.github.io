@@ -26,8 +26,16 @@
     <input type="number" name="imid"><br>
     Procedure Date: <br>
     <input type="date" name="prodate"><br>
-    Procedure Description(No Commas): <br>
+    Procedure Description(No commas): <br>
     <input type="text" name="proname"><br>
+    Exposure Type (Source to detector:<br>
+    <select name="etype">
+        <option value="PA">PA</option>
+        <option value="AP">AP</option>
+        <option value="RLAT">RLAT</option>
+        <option value="LLAT">LLAT</option>
+    </select>
+    <br>
     Patient Gender:<br>
     <input type="radio" name="gender" value="male" checked> Male<br>
     <input type="radio" name="gender" value="female"> Female<br>
@@ -52,6 +60,7 @@
         <th>Image Number</th>
         <th>Procedure Date</th>
         <th>Procedure Description</th>
+        <th>Exposure Type</th>
         <th>Gender</th>
         <th>Height</th>
         <th>Weight</th>
@@ -72,7 +81,7 @@
 <img id="Image2" class="Image2"hidden style="display: none"></img>
 <br>
 <br>
-<textarea readonly style="visibility: hidden; display: none" id="inputTextToSave" cols="80" rows="25">PatId,ImNum,Pdate,Pdesc,Gender,PHeight,PWeight,PAge,MatchedPhantom,VoxelX,VoxelY,VoxelZ_AP,VoxelZ_Lat</textarea>
+<textarea readonly style="visibility: hidden; display: none" id="inputTextToSave" cols="80" rows="25">PatId,ImNum,Pdate,Pdesc,Etype,Gender,PHeight,PWeight,PAge,MatchedPhantom,VoxelX,VoxelY,VoxelZ_AP,VoxelZ_Lat</textarea>
 <br>
 <br>
 <!-----text file contents-->
