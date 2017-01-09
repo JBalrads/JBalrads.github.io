@@ -42,11 +42,15 @@ function confirmCoords(){
         //for AP image------
         //larger x corresponds to more toward left of phantom "x" in phantom
         //larger y corresponds to more plantar ie smaller "z" in phantom
+
         var vx=0;
         var vy=0;
         var vz=0;
+        var vzlat;
+        var vzap;
         if (im1orient=='LAT'){
             vy=(pdims[1]/im1dims[0])*image1x;
+            vzlat=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             }else{
@@ -54,6 +58,7 @@ function confirmCoords(){
             }
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im1dims[0])*image1x;
+            vzap=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
             }else{
@@ -62,6 +67,8 @@ function confirmCoords(){
         }
         if (im2orient=='LAT'){
             vy=(pdims[1]/im2dims[0])*image2x;
+            vzlat=pdims[2]-(pdims[2]/im2dims[1])*image2y;
+
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
             }else{
@@ -69,6 +76,7 @@ function confirmCoords(){
             }
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im2dims[0])*image2x;
+            vzap=pdims[2]-(pdims[2]/im2dims[1])*image2y;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
             }else{
@@ -82,9 +90,9 @@ function confirmCoords(){
         console.log(vz);
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
-        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz;
+        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vzap+','+vzlat;
         var pattable=document.getElementById('patdtable');
-        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vz+'</td></tr>';
+        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vzap+'</td><td>'+vzlat+'</td></tr>';
     }else{alert('please click on both images');}
 
 }

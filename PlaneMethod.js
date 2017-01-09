@@ -56,11 +56,17 @@ function confirmCoords(){
         var vx2=0;
         var vy2=0;
         var vz2=0;
+        var vzap;
+        var vzap2;
+        var vzlat;
+        var vzlat2;
         var lathwrat;
         var aphwrat;
         if (im1orient=='LAT'){
             vy=(pdims[1]/im1dims[0])*image1x;
             vy2=(pdims[1]/im1dims[0])*image1x2;
+            vzlat=pdims[2]-(pdims[2]/im1dims[1])*image1y;
+            vzlat2=pdims[2]-(pdims[2]/im1dims[1])*image1y2;
             lathwrat=im1hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
@@ -75,6 +81,8 @@ function confirmCoords(){
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im1dims[0])*image1x;
             vx2=(pdims[0]/im1dims[0])*image1x2;
+            vzap=pdims[2]-(pdims[2]/im1dims[1])*image1y;
+            vzap2=pdims[2]-(pdims[2]/im1dims[1])*image1y2;
             aphwrat=im1hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im1dims[1])*image1y;
@@ -90,6 +98,8 @@ function confirmCoords(){
         if (im2orient=='LAT'){
             vy=(pdims[1]/im2dims[0])*image2x;
             vy2=(pdims[1]/im2dims[0])*image2x2;
+            vzlat=pdims[2]-(pdims[2]/im2dims[1])*image2y;
+            vzlat2=pdims[2]-(pdims[2]/im2dims[1])*image2y2;
             lathwrat=im2hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
@@ -104,6 +114,8 @@ function confirmCoords(){
         }else if(im1orient=="AP"){
             vx=(pdims[0]/im2dims[0])*image2x;
             vx2=(pdims[0]/im2dims[0])*image2x2;
+            vzap=pdims[2]-(pdims[2]/im2dims[1])*image2y;
+            vzap2=pdims[2]-(pdims[2]/im2dims[1])*image2y2;
             aphwrat=im2hwrat;
             if (vz==0){
                 vz=pdims[2]-(pdims[2]/im2dims[1])*image2y;
@@ -126,9 +138,9 @@ function confirmCoords(){
         console.log(vz2);
         //now put into text area
         var tarea=document.getElementById('inputTextToSave');
-        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vz+','+vx2+','+vy2+','+vz2+','+aphwrat+','+lathwrat;
+        tarea.innerHTML=tarea.innerHTML+'\n'+patid+','+imnum+','+pdate+','+pdesc+','+pgend+','+pheight+','+pweight+','+page+','+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+','+vx+','+vy+','+vx2+','+vy2+','+vzap+','+vzap2+','+vzlat+','+vzlat2+','+aphwrat+','+lathwrat;
         var pattable=document.getElementById('patdtable');
-        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vz+'</td><td>'+vx2+'</td><td>'+vy2+'</td><td>'+vz2+'</td><td>'+aphwrat+'</td><td>'+lathwrat+'</td></tr>';
+        pattable.innerHTML=pattable.innerHTML+ '<tr>'+'<td>'+ patid+ '</td><td>'+ imnum+ '</td><td>'+pdate+'</td><td>'+pdesc+'</td><td>'+pgend+'</td><td>'+pheight+'</td><td>'+pweight+'</td><td>'+page+'</td><td>'+im1.getAttribute('class').split('_')[1]+'_'+im1.getAttribute('class').split('_')[2]+'_'+im1.getAttribute('class').split('_')[3].replace('.png','')+'</td><td>'+vx+'</td><td>'+vy+'</td><td>'+vx2+'</td><td>'+vy2+'</td><td>'+vzap+'</td><td>'+vzap2+'</td><td>'+vzlat+'</td><td>'+vzlat2+'</td><td>'+aphwrat+'</td><td>'+lathwrat+'</td></tr>';
     }else{alert('please click on both images');}
 }
 //----------------------save text area---------------------------
@@ -213,17 +225,25 @@ can2.addEventListener('click',function(e){
         image2x2=0;
         image2y2=0;
         im2switch=1;
+        ctx.fillStyle = "#000000";
         ctx.beginPath();
         ctx.arc(image2x,image2y,2,0,2*Math.PI);
         ctx.fill();
         console.log('image2.1');
         console.log(image2x);
         console.log(image2y);
+        //add horizontal line to other image other image
+        //var otherctx=can1.getContext('2d');
+        //otherctx.fillStyle = "#ffffff";
+        //otherctx.moveTo(0,image2y);
+        //otherctx.lineTo(can1.width,image2y);
+        //otherctx.stroke();
     }
     else if (im2switch==1){
         image2x2=event.pageX-can2.offsetLeft;
         image2y2=event.pageY-can2.offsetTop;
         im2switch=0;
+        ctx.fillStyle = "#000000";
         ctx.beginPath();
         ctx.arc(image2x2,image2y2,2,0,2*Math.PI);
         ctx.fill();
